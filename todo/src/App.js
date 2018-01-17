@@ -18,14 +18,23 @@ class App extends Component {
     super(props);
 
     this.state = {
-        todos
-    };
+        todos,
+        flag : true,
+        defaultVal : ''
+    }; 
 }
   render() {
     return (
       <div>
       <CreateTodo todos={this.state.todos} createTask={this.createTask.bind(this)} />
-      <TodoList todos={this.state.todos} RemoveTodo = {this.RemoveTodo.bind(this)}/>
+      <TodoList todos={this.state.todos} 
+      RemoveTodo = {this.RemoveTodo.bind(this)} 
+      flag = {this.state.flag} 
+      defaultVal = {this.state.defaultVal} 
+      makeFlagFalse = {this.makeFlagFalse.bind(this)}
+      makeFlagTrue = {this.makeFlagTrue.bind(this)}
+      updateTaskValue = {this.updateTaskValue.bind(this)}
+      />
       </div>
     );
   }
@@ -40,12 +49,39 @@ class App extends Component {
   // this fn. is called by CreateTodo
   createTask(task) {
     this.state.todos.push({
+
         task,
         isCompleted: false
     });
     this.setState({ todos: this.state.todos });
     console.log(this.state.todos);
     console.log(task);
+}
+
+makeFlagFalse(val){
+  this.setState({
+    defaultVal : val,
+    flag : false
+  })
+}
+makeFlagTrue(){
+  this.setState({
+    flag : true
+  })
+}
+
+updateTaskValue(val, ind){
+console.log(val, ind)
+let localTodos = [];
+localTodos = this.state.todos;
+localTodos[ind] = {
+  task: val,
+  isCompleted: false
+}
+this.setState({
+  todos : localTodos,
+  flag : true
+})
 }
 }
 
