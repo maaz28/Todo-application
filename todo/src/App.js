@@ -19,8 +19,7 @@ class App extends Component {
 
     this.state = {
         todos,
-        flag : true,
-        defaultVal : ''
+        flag : true
     }; 
 }
   render() {
@@ -29,8 +28,7 @@ class App extends Component {
       <CreateTodo todos={this.state.todos} createTask={this.createTask.bind(this)} />
       <TodoList todos={this.state.todos} 
       RemoveTodo = {this.RemoveTodo.bind(this)} 
-      flag = {this.state.flag} 
-      defaultVal = {this.state.defaultVal} 
+      flag = {this.state.flag}
       makeFlagFalse = {this.makeFlagFalse.bind(this)}
       makeFlagTrue = {this.makeFlagTrue.bind(this)}
       updateTaskValue = {this.updateTaskValue.bind(this)}
@@ -58,9 +56,8 @@ class App extends Component {
     console.log(task);
 }
 
-makeFlagFalse(val){
+makeFlagFalse(){
   this.setState({
-    defaultVal : val,
     flag : false
   })
 }
